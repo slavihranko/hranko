@@ -14,7 +14,7 @@ def chat():
         model="gpt-4o",
         messages=messages
     )
-    return jsonify(response.choices[0].message)
+    return jsonify(response["choices"][0]["message"])
 
 if name == "__main__":
     app.run(host="0.0.0.0", port=10000)
