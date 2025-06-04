@@ -19,5 +19,5 @@ def chat():
 
     return jsonify({"reply": response.choices[0].message.content})
 
-if name == "__main__":
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
