@@ -3,13 +3,19 @@ import openai
 import os
 
 app = Flask(__name__)
-
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Зареждане на системния промпт от файл
+with open("system_prompt.txt", "r", encoding="utf-8") as f:
+    system_prompt = f.read()
 
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.json
     messages = data.get("messages", [])
+
+    # Вкарваме системния промпт като първо съобщение
+    messages.insert(0, {"role": "system", "content": system_prompt})
 
     try:
         response = openai.ChatCompletion.create(
