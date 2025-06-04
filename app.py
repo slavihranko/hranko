@@ -12,7 +12,6 @@ def chat():
     messages = data.get("messages", [])
 
     client = openai.OpenAI()
-
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=messages
@@ -20,6 +19,5 @@ def chat():
 
     return jsonify({"reply": response.choices[0].message.content})
 
-
-if __name__ == "__main__":
+if name == "__main__":
     app.run(host="0.0.0.0", port=10000)
