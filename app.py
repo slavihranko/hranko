@@ -10,10 +10,11 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def chat():
     data = request.json
     messages = data.get("messages", [])
-    response = openai.ChatCompletion.create(
-        model="gpt-4o",
-        messages=messages
-    )
+client = openai.OpenAI()
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=messages
+)
     return jsonify(response["choices"][0]["message"])
 
 if __name__ == "__main__":
